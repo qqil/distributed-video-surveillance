@@ -1,0 +1,23 @@
+{
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "removeComments": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "resolvePackageJsonExports": true,
+    "emitDecoratorMetadata": true,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    // "declaration": false,
+    // "noImplicitAny": false,
+    "types": ["node"]
+  },
+  "include": ["src/**/*", "eslint.config.mts"]
+}
