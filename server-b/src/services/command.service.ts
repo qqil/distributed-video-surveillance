@@ -39,7 +39,7 @@ async function startVideo(user: UserPayload): Promise<string> {
   commandLogger.info({ user }, `Received command START_VIDEO`);
 
   if (user.role !== UserRole.Operator) {
-    throw new Error("User does not have permission to stop video");
+    throw new Error("User does not have permission to start video");
   }
 
   logger.info(`Starting video for user: ${JSON.stringify(user)}`);
