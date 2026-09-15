@@ -1,0 +1,12 @@
+[
+    {
+        "login":"admin",
+        "password":"$2b$10$t73YUHuD1CwAfpbQKYplJetAZxgVRkeF/eKNB/YaOwNVWFCjqTZpS",
+        "role": "operator"
+    },
+    {
+        "login":"viewer",
+        "password":"$2b$10$t73YUHuD1CwAfpbQKYplJetAZxgVRkeF/eKNB/YaOwNVWFCjqTZpS",
+        "role": "viewer"
+    }
+]

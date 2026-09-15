@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service StreamManager {
+    rpc StartVideo(Empty) returns (GenericReply) {}
+    rpc StopVideo(Empty) returns (GenericReply) {}
+    rpc GetStatus(Empty) returns (GenericReply) {}
+}
+
+message Empty {
+}
+
+message GenericReply {
+    bool success = 1;
+    string message = 2;
+}
