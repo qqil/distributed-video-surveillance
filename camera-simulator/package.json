@@ -1,0 +1,23 @@
+{
+  "name": "camera-simulator",
+  "version": "1.0.0",
+  "description": "A simulator for camera streams using FFmpeg",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/ffmpeg.js",
+    "start:dev": "tsx src/ffmpeg.ts"
+  },
+  "keywords": [],
+  "author": "Sergejs Zakatovs <s.zakatov@gmail.com>",
+  "license": "ISC",
+  "packageManager": "pnpm@12.3.4+sha512.961aa41fb077da3a04a441d9f8e15ebc0c96da8ef710b2eb67bf9ee7cb0610eabd48f1fd85f51cffe73846785fa0f87c56a3a872a1d893f8446741b5cce45457",
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.5",
+    "@types/node": "^26.4.1",
+    "tsx": "^4.19.2",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25.0.0"
+  }
+}
