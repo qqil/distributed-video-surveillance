@@ -13,7 +13,10 @@ FROM dev AS build
 RUN pnpm run build
 
 FROM base AS prod
+ENV NODE_ENV=production
 COPY --chown=node:node package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile --prod
 COPY --chown=node:node --from=build /app/dist ./dist
+COPY --chown=node:node --from=build /app/src/grpc/*.proto ./dist/grpc/
+COPY --chown=node:node --from=build /app/users.json ./users.json
 CMD ["pnpm", "run", "start"]

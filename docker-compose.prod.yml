@@ -13,6 +13,7 @@ services:
   server-a:
     build: 
       context: ./server-a
+      target: prod
     depends_on:
       - mediamtx
     # Override environment variables for production as needed
@@ -24,11 +25,12 @@ services:
     #   - MEDIAMTX_USER=admin
     #   - MEDIAMTX_PASSWORD=admin123
     #   - MEDIAMTX_STREAM_PATH=camera
-    volumes: []
-  
+    volumes: !reset []
+
   server-b:
     build: 
       context: ./server-b
+      target: prod
     depends_on:
       - server-a
     # Override environment variables for production as needed
@@ -37,16 +39,17 @@ services:
     #   - JWT_SECRET=mysecret # Must be the same as in server-a
     #   - STREAM_TOKEN_PRIVATE_KEY=
     #   - SERVER_A_GRPC_URL=server-a:50051
-    volumes: []
+    volumes: !reset []
     ports:
       - "3001:3000"
 
   frontend:
     build:
       context: ./frontend
+      target: prod
     depends_on:
       - server-a
       - server-b
-    volumes: []
+    volumes: !reset []
     ports:
       - "80:3000"
