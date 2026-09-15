@@ -1,0 +1,31 @@
+rtspAddress: :8554
+
+authInternalUsers:
+  - user: admin
+    pass: admin123
+    permissions:
+      - action: publish
+      - action: read
+      - action: playback
+      - action: api
+
+  - user: any
+    pass:
+    permissions:
+      - action: read
+      - action: playback
+
+webrtc: true
+webrtcAddress: :8889
+ 
+webrtcAllowOrigins:
+  - "*"
+
+webrtcLocalUDPAddress: :8189
+webrtcLocalTCPAddress: :8189
+
+webrtcAdditionalHosts:
+  - 127.0.0.1
+
+paths:
+  camera:

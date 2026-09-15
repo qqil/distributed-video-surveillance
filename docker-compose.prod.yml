@@ -1,0 +1,52 @@
+services:
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    restart: unless-stopped
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+    ports:
+      - "8554:8554" # RTSP port
+      - "8889:8889" # Mediamtx API port
+      - "8189:8189/udp" # WebRTC port
+      - "8189:8189/tcp" # WebRTC port
+
+  server-a:
+    build: 
+      context: ./server-a
+    depends_on:
+      - mediamtx
+    # Override environment variables for production as needed
+    # environment:
+    #   - JWT_SECRET=mysecret # Must be the same as in server-b
+    #   - GRPC_PORT=50051
+    #   - MEDIAMTX_API_URL=http://mediamtx:8889
+    #   - MEDIAMTX_WEBRTC_URL=http://mediamtx:8189
+    #   - MEDIAMTX_USER=admin
+    #   - MEDIAMTX_PASSWORD=admin123
+    #   - MEDIAMTX_STREAM_PATH=camera
+    volumes: []
+  
+  server-b:
+    build: 
+      context: ./server-b
+    depends_on:
+      - server-a
+    # Override environment variables for production as needed
+    # environment:
+    #   - FRONTEND_ORIGIN=http://localhost
+    #   - JWT_SECRET=mysecret # Must be the same as in server-a
+    #   - STREAM_TOKEN_PRIVATE_KEY=
+    #   - SERVER_A_GRPC_URL=server-a:50051
+    volumes: []
+    ports:
+      - "3001:3000"
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - server-a
+      - server-b
+    volumes: []
+    ports:
+      - "80:3000"

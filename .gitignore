@@ -1,3 +1,7 @@
 node_modules/
 dist/
 *.tsbuildinfo
+*.log
+!.env.example
+.env*
+server-b/commands.log
