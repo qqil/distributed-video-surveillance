@@ -2,9 +2,12 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
+import { AuthProvider } from '#/context/auth-context'
+
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
+  notFoundComponent: () => <p>Page not found</p>,
   head: () => ({
     meta: [
       {
@@ -35,7 +38,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <AuthProvider>{children}</AuthProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',

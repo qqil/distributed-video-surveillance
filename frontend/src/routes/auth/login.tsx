@@ -1,25 +1,30 @@
 import { useEffect } from 'react'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 
+import { LoginForm } from '#/components/login-form'
 import { useAuth } from '#/context/auth-context'
 
-export const Route = createFileRoute('/')({ component: Index })
+export const Route = createFileRoute('/auth/login')({
+  component: LoginPage,
+})
 
-function Index() {
+function LoginPage() {
   const { status } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (status === 'authenticated') {
       navigate({ to: '/stream', replace: true })
-    } else if (status === 'unauthenticated') {
-      navigate({ to: '/auth/login', replace: true })
     }
   }, [status, navigate])
 
+  if (status === 'authenticated') {
+    return null
+  }
+
   return (
-    <div className="p-8">
-      <p className="text-muted-foreground">Checking session...</p>
+    <div className="flex min-h-svh items-center justify-center p-6">
+      <LoginForm />
     </div>
   )
 }
